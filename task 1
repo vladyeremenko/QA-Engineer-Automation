@@ -1,1 +1,50 @@
+<?php
 
+// Function scroll_to changes the status of previous items to hidden 
+// It also makes status of next 10 items as displayed
+
+
+function scroll_to($item) {
+    
+    // For example here is array of 24 items where only first 10 items are displayed:
+    $all_items = array (
+        1 => "displayed", 
+        2 => "displayed", 
+        3 => "displayed", 
+        4 => "displayed", 
+        5 => "displayed", 
+        6 => "displayed", 
+        7 => "displayed", 
+        8 => "displayed", 
+        9 => "displayed", 
+        10 => "displayed", 
+        11 => "hidden", 
+        12 => "hidden", 
+        13 => "hidden",
+        14 => "hidden", 
+        15 => "hidden", 
+        16 => "hidden",
+        17 => "hidden", 
+        18 => "hidden", 
+        19 => "hidden",
+        20 => "hidden",
+        21 => "hidden", 
+        22 => "hidden", 
+        23 => "hidden",
+        24 => "hidden"
+    );
+    
+    foreach ($all_items as $key => $value) {
+        if ($key < $item or $key > ($item+9)) {
+            $value = "hidden";
+            echo $key . " " . $value. " false". "\r\n";
+        } else {
+            $value = "displayed";
+            echo $key . " " . $value . " true" . "\r\n";
+        }
+    }
+}
+
+scroll_to("8");
+
+// Result can be reviewed here: http://sandbox.onlinephpfunctions.com/code/b1948931cfc7340b8c245d224f2545e8ca99b80c

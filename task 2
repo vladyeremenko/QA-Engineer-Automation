@@ -1,1 +1,59 @@
+<?php
 
+// Function that counts how many times extra products are presented 
+// in the created array inside the $matched_extra_products_array
+function count_extra_products () {
+    
+    // For example here are arrays of 10 first extra products from database:
+    $burger_extra_products = array("cheese", "meat", "bread", "tomato");
+    $salad_extra_products = array("cheese", "onion", "tomato", "cucumber");
+    $pizza_extra_products = array("cheese", "meat", "tomato");
+    $sushi_extra_products = array("fish", "avocado", "nori", "rise");
+    $shawarma_extra_products = array("pita", "meat", "cheese", "ketchup", "carrot", "mustard");
+    $borshch_extra_products = array("root", "meat", "tomato");
+    $vareniki_extra_products = array("potato", "meat", "onion");
+    $soup_extra_products = array("mushroom", "cream", "water");
+    $pasta_extra_products = array("cheese", "meat", "tomato");
+    $rissotto_extra_products = array("rise", "meat", "tomato");
+    
+
+    // Function that creates arrays of matched extra products
+    function match_extra_products() {
+        $only_match_values = array();
+        $args = func_get_args();
+        $i = 1;
+        
+        foreach($args as $arg) {
+            foreach($arg as $value) {
+                $only_match_values[$value][] = "array $i";
+            }
+            $i++;
+        }
+
+        return $only_match_values;
+    }   
+
+
+    $matched_extra_products_array = match_extra_products(
+        $burger_extra_products,
+        $salad_extra_products,
+        $pizza_extra_products,
+        $sushi_extra_products,
+        $shawarma_extra_products,
+        $borshch_extra_products,
+        $vareniki_extra_products,
+        $soup_extra_products,
+        $pasta_extra_products,
+        $rissotto_extra_products
+    );
+    
+    
+    foreach ($matched_extra_products_array as $key => $value) {
+        $counted_matches = count($matched_extra_products_array[$key]);
+        echo $key . " " . $counted_matches. "\r\n";
+    }
+}
+
+count_extra_products ();
+
+// Result can be reviewed here http://sandbox.onlinephpfunctions.com/code/dcfd25f2417548b251134752bfa943ffc24ab2a9
